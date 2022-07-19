@@ -11,6 +11,7 @@ public class Chomp {
         Chomp object1 = new Chomp();
 
     }
+
     public Chomp () {
         Scanner input = new Scanner(System.in);
         System.out.println("Rows?");        
