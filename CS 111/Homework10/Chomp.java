@@ -14,14 +14,17 @@ public class Chomp {
         System.out.println("Each chomp, a row and column, bites off all below and to the right.");
                 
         Chomp game = new Chomp();
+        Scanner input = new Scanner(System.in);
 
         while (!game.isGameOver()) {
             int row, col;
             while (true) {
                 System.out.print("Player " + game.getCurrentPlayer() + " chomp? ");
-                row = game.getTurn();
-                col = game.getTurn();
+                row = input.nextInt();
+                col = input.nextInt();
+                System.out.println(row);
                 if (game.isLegalChomp(row, col)) {
+                    
                     break;
                 } else {
                     System.out.println("That is not legal chomp position.");
@@ -31,7 +34,7 @@ public class Chomp {
             game.chompAt(row, col);
             game.PrintGame();
         }
-
+        System.out.println("Player " + game.getCurrentPlayer() + " wins!");
     }
 
     public int getTurn() {
@@ -49,6 +52,15 @@ public class Chomp {
     }
 
     public boolean isLegalChomp(int row, int col) {
+        
+        if (row < 0 || row >= rows) {
+            return false;
+        }
+
+        if (col < 0 || col >= columns) {
+            return false;
+        }
+
         if (matrix[row][col] == "*") {
             return true;
         }
@@ -63,7 +75,7 @@ public class Chomp {
         for(int i = 0; i < rows; i++)
             for(int j = 0; j < columns; j++)
                 if (i >= row && j >= col && isLegalChomp(i, j)) {
-                    matrix[i][j] = "x";
+                    matrix[i][j] = " ";
                 }
 
         if (currentPlayer == 1) 
@@ -99,8 +111,7 @@ public class Chomp {
         for(int j = 0; j < rows; j++){
             System.out.print(j);
             for(int k = 0; k < columns; k++){
-                matrix[j][k] = "*";
-                System.out.print(matrix [j][k]);
+                System.out.print(matrix[j][k]);
             }
             System.out.println("");
         }
@@ -113,6 +124,11 @@ public class Chomp {
         System.out.println("Columns?");  
         columns = input.nextInt();
         matrix = new String[rows][columns];
+
+        for(int i = 0; i < rows; i ++)
+            for(int j = 0; j < columns; j++)
+                matrix[i][j] = "*";
+
         currentPlayer = 1;
         
         PrintGame();
