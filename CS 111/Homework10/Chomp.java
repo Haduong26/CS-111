@@ -19,15 +19,15 @@ public class Chomp {
             int row, col;
             while (true) {
                 System.out.print("Player " + game.getCurrentPlayer() + " chomp? ");
-                row = getTurn();
-                col = getTurn();
+                row = game.getTurn();
+                col = game.getTurn();
                 if (game.isLegalChomp(row, col)) {
                     break;
                 } else {
                     System.out.println("That is not legal chomp position.");
                     game.PrintGame();
                 }     
-            } while ()
+            } 
             game.chompAt(row, col);
             game.PrintGame();
         }
@@ -37,7 +37,7 @@ public class Chomp {
     public int getTurn() {
         Scanner input = new Scanner(System.in);
         int newNumber = input.nextInt();
-        retur newNumber;
+        return newNumber;
     }
 
     public int getCols(){
@@ -78,7 +78,7 @@ public class Chomp {
         return currentPlayer;
     }
 
-    public bool isGameOver() {
+    public boolean isGameOver() {
         if (matrix[0][0] == "*")
             return false;
         return true;
@@ -102,7 +102,8 @@ public class Chomp {
                 matrix[j][k] = "*";
                 System.out.print(matrix [j][k]);
             }
-        System.out.println("");       
+            System.out.println("");
+        }
     }
 
     public Chomp () {
@@ -117,9 +118,5 @@ public class Chomp {
         PrintGame();
     }
     
-
-
-
-    }
 
 }
