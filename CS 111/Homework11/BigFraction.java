@@ -6,17 +6,17 @@ import java.util.Scanner;
 
 
 public class BigFraction {
-    public final BigFraction ONE = new BigFraction(1,1);
-    public final BigFraction ZERO = new BigFraction(0,1);
+    // public final BigFraction ONE;
+    // public final BigFraction ZERO; 
 
-    public static BigInteger num;
-    public static BigInteger denom;
+    public BigInteger num;
+    public BigInteger denom;
 
     public static void main(String[] args) {
-        BigFraction A = new BigFraction(1,2);
+        BigFraction A = new BigFraction(1, 2);
         BigFraction B = new BigFraction("2/4");
-        A.multiply​(B);
-        System.out.print(A.num + " " + A.denom);
+        BigFraction C = A.multiply​(B);
+        System.out.print(C.toString());
     }
 
     private void Simplify(){
@@ -97,7 +97,9 @@ public class BigFraction {
     }
 
     public BigFraction multiply​(BigFraction b){
-        return new BigFraction(num.multiply(b.num), denom.multiply(b.denom));   
+        BigFraction result = new BigFraction(num.multiply(b.num), denom.multiply(b.denom));   
+        result.Simplify();
+        return result;
 
     }
 
